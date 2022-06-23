@@ -18,14 +18,14 @@ static void ProductTest()
     ProductManager productManager = new ProductManager(new EfProductDal());
     Console.WriteLine("Tum Productlar");
     Console.WriteLine();
-    foreach (var product in productManager.GetAll())
+    foreach (var product in productManager.GetAll().Data)
     {
         Console.WriteLine($"ProductName ={product.ProductName}");
     }
     Console.WriteLine("--------------------------------------------------");
     Console.WriteLine("Kategoriye gore productlar");
     Console.WriteLine();
-    foreach (var product in productManager.GetAllByCategoryId(1))
+    foreach (var product in productManager.GetAllByCategoryId(1).Data)
     {
         Console.WriteLine($"ProductName ={product.ProductName}");
     }
@@ -33,9 +33,26 @@ static void ProductTest()
     Console.WriteLine("--------------------------------------------------");
     Console.WriteLine("UnitPrice'a productlar");
     Console.WriteLine();
-    foreach (var product in productManager.GetProductDetails())
+    foreach (var product in productManager.GetProductDetails().Data)
     {
         Console.WriteLine($"ProductName ={product.ProductName} / CategoryName ={product.CategoryName}");
+    }
+
+    Console.WriteLine("--------------------------------------------------");
+    Console.WriteLine("Productdetails Methoduna Gore Productlar");
+    Console.WriteLine();
+
+    var result = productManager.GetProductDetails();
+    if (result.Success)
+    {
+        foreach (var product in result.Data)
+        {
+            Console.WriteLine($"{product.ProductName} / {product.CategoryName}");
+        }
+    }
+    else
+    {
+        Console.WriteLine(result.Message);
     }
 }
 

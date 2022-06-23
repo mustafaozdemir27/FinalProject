@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,7 @@ namespace Business.Constants
         // publicler degisken dahi olsa PascalCase yazilir
         public static string ProductAdded = "Ürün eklendi";
         public static string ProductNameInvalid = "Ürün ismi geçersiz";
+        public static string MaintenanceTime = "Bakım dolayısıyla ürünler geçiçi olarak listelenemiyor";
+        public static string ProductsListed="Ürünler listelendi";
     }
 }
