@@ -51,6 +51,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId), Messages.ProductsListed); 
         }
 
+        // [LogAspect] --> AOP Bir methodun onunde, bir methodun sonunda, bir method hata verdiginde calisan kod parcaciklarini AOP ile yaziyoruz
         public IResult Add(Product product)
         {
             // business codes

@@ -10,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Icerisinde data tutulmuyorsa singleton kullanilir. Eger data tutuluyorsa kullanilmaz cunku herkese ayni instance verir. Diyelim e ticaret uygulamamiz var, sepeti goruntulemek istedik,
 // sepetteki urunler karisir cunku ayni instancelari veriyor.
+// AOP
+// Autofac bize AOP imkani sunuyor
+// Autofac, Ninject, CastleWindsor, StructureMap LightInject, DryInject --> IoC Container
 builder.Services.AddSingleton<IProductService, ProductManager>();
 builder.Services.AddSingleton<IProductDal,EfProductDal>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
