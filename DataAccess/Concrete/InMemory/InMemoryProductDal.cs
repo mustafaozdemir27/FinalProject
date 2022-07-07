@@ -72,5 +72,10 @@ namespace DataAccess.Concrete.InMemory
         {
             throw new NotImplementedException();
         }
+
+        public List<Category> GetAllCategories()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -13,7 +13,7 @@ ProductTest();
 
 static void ProductTest()
 {
-    ProductManager productManager = new ProductManager(new EfProductDal());
+    ProductManager productManager = new ProductManager(new EfProductDal(),new CategoryManager(new EfCategoryDal()));
     Console.WriteLine("Tum Productlar");
     Console.WriteLine();
     foreach (var product in productManager.GetAll().Data)
@@ -59,12 +59,12 @@ static void CategoryTest()
     CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
     Console.WriteLine("Tum Kategoriler");
     Console.WriteLine();
-    foreach (var category in categoryManager.GetAll())
+    foreach (var category in categoryManager.GetAll().Data)
     {
         Console.WriteLine($"CategoryName ={category.CategoryName}");
     }
     Console.WriteLine("--------------------------------------------------");
     Console.WriteLine("id'ye gore kategoriler");
     Console.WriteLine();
-    Console.WriteLine($"CategoryName ={categoryManager.GetById(2).CategoryName}");
+    Console.WriteLine($"CategoryName ={categoryManager.GetById(2).Data.CategoryName}");
 }

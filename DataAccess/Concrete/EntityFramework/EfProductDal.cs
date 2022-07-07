@@ -8,6 +8,7 @@ namespace DataAccess.Concrete.EntityFramework
     //NuGet
     public class EfProductDal : EfEntityRepositoryBase<Product, NorthwindContext>, IProductDal
     {
+
         public List<ProductDetailDto> GetProductDetails()
         {
             using (NorthwindContext context = new NorthwindContext())
