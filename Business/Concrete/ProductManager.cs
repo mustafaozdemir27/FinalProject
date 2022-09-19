@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -51,7 +52,8 @@ namespace Business.Concrete
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId), Messages.ProductsListed);
         }
 
-        // [LogAspect] --> AOP Bir methodun onunde, bir methodun sonunda, bir method hata verdiginde calisan kod parcaciklarini AOP ile yaziyoruz
+        // [LogAspect] --> AOP Bir methodun onunde, bir methodun sonunda, bir method hata verdiginde calisan kod parcaciklarini AOP ile yaziyoruz                
+        [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
@@ -96,7 +98,7 @@ namespace Business.Concrete
             var result = _categoryService.GetAll();
             if (result.Data.Count > 15)
             {
-                return new ErrorResult(Messages.CategoryLimitExceded);
+                return new ErrorResult("Limit hatasi");
             }
             return new SuccessResult();
         }
