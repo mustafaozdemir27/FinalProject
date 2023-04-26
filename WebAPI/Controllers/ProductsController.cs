@@ -12,7 +12,7 @@ namespace WebAPI.Controllers
         // Loosely coupled
         // naming convention
         // IoC Container -- Inversion of Control
-        IProductService _productService;
+        readonly IProductService _productService;
 
         public ProductsController(IProductService productService)
         {
@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
             }
 
             return BadRequest(result);
- 
+
         }
 
         [HttpGet("getbyid")]

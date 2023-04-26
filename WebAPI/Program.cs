@@ -1,6 +1,9 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Business.DependencyResolvers.Autofac;
+using Core.DependencyResolvers;
+using Core.Extensions;
+using Core.Utilities.IoC;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -20,6 +23,7 @@ builder.Services.AddControllers();
 //builder.Services.AddSingleton<IProductService, ProductManager>();
 //builder.Services.AddSingleton<IProductDal,EfProductDal>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -49,6 +53,11 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true
     };
 });
+
+builder.Services.AddDependencyResolvers(new ICoreModule[]{
+    new CoreModule()
+});
+
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
