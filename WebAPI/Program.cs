@@ -15,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
+builder.Services.AddCors();
 // Icerisinde data tutulmuyorsa singleton kullanilir. Eger data tutuluyorsa kullanilmaz cunku herkese ayni instance verir. Diyelim e ticaret uygulamamiz var, sepeti goruntulemek istedik,
 // sepetteki urunler karisir cunku ayni instancelari veriyor.
 // AOP
@@ -65,6 +66,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
 app.UseHttpsRedirection();
 

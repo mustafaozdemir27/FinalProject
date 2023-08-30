@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-
+            Thread.Sleep(1000);
             // Swagger
             // Dependency chain --
             // IProductService productService = new ProductManager(new EfProductDal());
@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
             }
 
             return BadRequest(result);
- 
+
         }
 
         [HttpGet("getbyid")]
@@ -47,6 +47,17 @@ namespace WebAPI.Controllers
             return NotFound(result);
         }
 
+        [HttpGet("getbycategory")]
+        public IActionResult GetByCategory(int categoryId)
+        {
+            var result = _productService.GetAllByCategoryId(categoryId);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return NotFound(result);
+        }
 
         [HttpPost("add")]
         public IActionResult Add(Product product)
